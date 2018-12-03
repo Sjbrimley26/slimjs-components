@@ -1,15 +1,15 @@
-const { Slim } = require("slim-js");
-const axios = require("axios");
-const router = require("../../router");
+const { Slim } = require('slim-js');
+const axios = require('axios');
+const router = require('../../router');
 
-const { userStore } = require("../../store");
+const { userStore } = require('../../store');
 /* eslint-disable no-useless-escape */
 
-require("../presentational/EmailInput");
-require("../presentational/PasswordInput");
+require('../presentational/EmailInput');
+require('../presentational/PasswordInput');
 
 Slim.tag(
-  "login-form",
+  'login-form',
   `<div s:id="loginForm" id="loginForm" class="loginForm" >
     <form s:id="actualLoginForm" id="actualLoginForm" action="#" method="post">
       <email-input></email-input>
@@ -89,12 +89,12 @@ Slim.tag(
   </style>
   `,
   class LoginForm extends Slim {
-    onRender() {
-      this.loginForm.addEventListener("submit", formSubmit(this));
-      this.signUpButton.addEventListener("click", signUpSubmit(this));
+    onRender () {
+      this.loginForm.addEventListener('submit', formSubmit(this));
+      this.signUpButton.addEventListener('click', signUpSubmit(this));
     }
 
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }
@@ -117,7 +117,7 @@ const getInputValues = targetOrElement => {
 
 const formSubmit = element => e => {
   e.preventDefault();
-  const url = element.props["login-action"];
+  const url = element.props['login-action'];
   const [email, password] = getInputValues(e.target);
   axios
     .post(url, {
@@ -125,14 +125,14 @@ const formSubmit = element => e => {
       password
     })
     .then(res => res.data)
-    .then(({ token }) => localStorage.setItem("token", token))
-    .then(async () => await userStore.getUser())
-    .then(() => router.navigate("../"))
+    .then(({ token }) => localStorage.setItem('token', token))
+    .then(async () => userStore.getUser())
+    .then(() => router.navigate('../'))
     .catch(err => {
-      if (!err.hasOwnProperty("response")) return;
+      if (!err.hasOwnProperty('response')) return;
       if (err.response.status === 500) {
-        const mI = err.response.data.indexOf("<pre>") + 5;
-        const eI = err.response.data.indexOf("<br>");
+        const mI = err.response.data.indexOf('<pre>') + 5;
+        const eI = err.response.data.indexOf('<br>');
         const message = err.response.data.substring(mI, eI);
         alert(message);
       }
@@ -141,5 +141,5 @@ const formSubmit = element => e => {
 
 const signUpSubmit = element => e => {
   e.preventDefault();
-  router.navigate("../signup");
+  router.navigate('../signup');
 };

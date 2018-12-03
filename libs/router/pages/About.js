@@ -1,12 +1,12 @@
-const createSidebar = require("../../components/main/BarAndLinks");
+const createSidebar = require('../../components/main/BarAndLinks');
 
 module.exports = (app, router) => () => {
-  const header = document.createElement("header-bar");
-  header.setAttribute("data-title", "Have any questions?");
+  const header = document.createElement('header-bar');
+  header.setAttribute('data-title', 'Have any questions?');
   const sidebar = createSidebar();
-  const body = document.createElement("main-content");
+  const body = document.createElement('main-content');
   body.setAttribute(
-    "data-contents",
+    'data-contents',
     `<p style="color: white">
       Rewards.Radio is a place where cool stuff happens.
     </p>

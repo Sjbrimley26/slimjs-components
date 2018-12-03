@@ -1,25 +1,24 @@
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
-const { newUserPOST } = require("../../api");
-const { url } = require("../../../config");
+const { newUserPOST } = require('../../api');
 
-require("./PasswordInput");
-require("./EmailInput");
+require('./PasswordInput');
+require('./EmailInput');
 
 const titleCase = string => {
-  let words = string.split(" ");
+  let words = string.split(' ');
   words = words.map(word => {
     word = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
     return word;
   });
-  return words.join(" ");
+  return words.join(' ');
 };
 
 const TextInput = (name, { required } = { required: false }) => {
   /* eslint-disable no-useless-escape, prettier/prettier */
-  const lower = name.toLowerCase().replace(/ /g, "");
+  const lower = name.toLowerCase().replace(/ /g, '');
   const title = titleCase(name);
-  const isPassword = name === "password" || name === "confirm password";
+  const isPassword = name === 'password' || name === 'confirm password';
 
   if (isPassword) {
     return `
@@ -27,7 +26,7 @@ const TextInput = (name, { required } = { required: false }) => {
       <label for="password">${title}</label>
       <password-input></password-input>
     </span>
-    <br>`
+    <br>`;
   } else {
     return `
     <span>
@@ -36,7 +35,7 @@ const TextInput = (name, { required } = { required: false }) => {
         type="text"
         name="${lower}"
         id="${lower}" 
-        ${required && "required"} 
+        ${required && 'required'} 
         ${!required && 'placeholder = "Optional"'}
         ${isPassword && 'pattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"'}
       />
@@ -47,17 +46,17 @@ const TextInput = (name, { required } = { required: false }) => {
 };
 
 Slim.tag(
-  "signup-form",
+  'signup-form',
   `<div>
     <form s:id="theForm" action="#" method="post">
       <span>
         <label for="email">Email</label>
         <email-input></email-input>
       </span>
-      ${TextInput("password", { required: true })}
-      ${TextInput("confirm password", { required: true })}
-      ${TextInput("full name", { required: true })}
-      ${TextInput("phone number")}
+      ${TextInput('password', { required: true })}
+      ${TextInput('confirm password', { required: true })}
+      ${TextInput('full name', { required: true })}
+      ${TextInput('phone number')}
       <span class="questionSpan">Is this a business or personal account?</span>
       <br>
       <span>
@@ -154,12 +153,12 @@ Slim.tag(
   </style>
   `,
   class SignupForm extends Slim {
-    get useShadow() {
+    get useShadow () {
       return true;
     }
 
-    onRender() {
-      this.theForm.addEventListener("submit", submitForm(this.theForm));
+    onRender () {
+      this.theForm.addEventListener('submit', submitForm(this.theForm));
     }
   }
 );
@@ -168,19 +167,19 @@ const submitForm = form => e => {
   try {
     e.preventDefault();
 
-    form.removeEventListener("submit", submitForm(form));
-    
+    form.removeEventListener('submit', submitForm(form));
+
     const elements = Array.from(form.elements);
 
     const inputs = elements.filter(el => {
-      const isText = ["text", "email", "password"].includes(el.type)
+      const isText = ['text', 'email', 'password'].includes(el.type);
       const isChecked = el.checked;
       return isText || isChecked;
     });
-      
+
     const data = inputs.reduce((details, el) => {
-      if (el.name === "password") {
-        if (details.hasOwnProperty("password")) {
+      if (el.name === 'password') {
+        if (details.hasOwnProperty('password')) {
           if (details.password !== el.value) {
             throw new Error("Passwords don't match");
           }
@@ -193,7 +192,6 @@ const submitForm = form => e => {
     }, {});
 
     newUserPOST(data);
-
   } catch (err) {
     alert(err);
   }

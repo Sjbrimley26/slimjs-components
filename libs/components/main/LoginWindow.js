@@ -1,12 +1,12 @@
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
-const { url } = require("../../../config");
+const { url } = require('../../../config');
 
-require("../container/CenterBox");
-require("../presentational/LoginForm");
+require('../container/CenterBox');
+require('../presentational/LoginForm');
 
 Slim.tag(
-  "login-window",
+  'login-window',
   `<center-box
     data-title="iBusiness.Exchange"
     data-contents='<login-form  
@@ -16,7 +16,7 @@ Slim.tag(
     data-size=400
   />`,
   class LoginWindow extends Slim {
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }

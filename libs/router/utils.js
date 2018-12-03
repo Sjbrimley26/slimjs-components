@@ -1,5 +1,5 @@
-const { head, app, router } = require("./globals");
-const { userStore } = require("../store");
+const { app, router } = require('./globals');
+const { userStore } = require('../store');
 
 const clearPage = div => {
   while (div.firstChild) {
@@ -8,9 +8,9 @@ const clearPage = div => {
 };
 
 const redirectIfNotLoggedIn = () => {
-  if (!userStore.currentUser.hasOwnProperty("username")) {
+  if (!userStore.currentUser.hasOwnProperty('username')) {
     clearPage(app);
-    router.navigate("login");
+    router.navigate('login');
   }
 };
 
@@ -19,7 +19,7 @@ const redirectIfNotAdmin = () => {
     return;
   }
   clearPage(app);
-  router.navigate("../");
+  router.navigate('../');
 };
 
 module.exports = {

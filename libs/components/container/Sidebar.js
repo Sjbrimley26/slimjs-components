@@ -1,7 +1,7 @@
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
 Slim.tag(
-  "side-bar",
+  'side-bar',
   `<div s:id="sidebar" id="sidebar">
   </div>
   <style>
@@ -42,21 +42,21 @@ Slim.tag(
   </style>
   `,
   class Sidebar extends Slim {
-    onRender() {
+    onRender () {
       if (!this.props.links) {
         return;
       }
       this.props.links = JSON.parse(this.props.links);
       this.props.links.forEach(({ icon, label, action }) => {
-        const wip = document.createElement("icon-link");
-        wip.setAttribute("data-label", label);
-        wip.setAttribute("data-icon", icon);
-        wip.setAttribute("data-action", action);
+        const wip = document.createElement('icon-link');
+        wip.setAttribute('data-label', label);
+        wip.setAttribute('data-icon', icon);
+        wip.setAttribute('data-action', action);
         this.sidebar.appendChild(wip);
       });
     }
 
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }

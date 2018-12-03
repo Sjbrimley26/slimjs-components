@@ -1,8 +1,8 @@
 // Designed to work with my header and sidebar / footer
 
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
-const { parseHTML } = require("../../utils");
+const { parseHTML } = require('../../utils');
 
 const initialize = element => {
   const { contents } = element.props;
@@ -14,7 +14,7 @@ const initialize = element => {
 };
 
 Slim.tag(
-  "main-content",
+  'main-content',
   `<div s:id="mainContent" id="mainContent"></div>
   <style>
     :host * {
@@ -49,11 +49,11 @@ Slim.tag(
     }
   </style>`,
   class MainContent extends Slim {
-    onRender() {
+    onRender () {
       initialize(this);
     }
 
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }

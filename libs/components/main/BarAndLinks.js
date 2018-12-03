@@ -1,7 +1,7 @@
 const createSidebar = () => {
-  const sidebar = document.createElement("side-bar");
+  const sidebar = document.createElement('side-bar');
   sidebar.setAttribute(
-    "data-links",
+    'data-links',
     `[
       {
         "icon": "https://lh3.ggpht.com/A0x3jzuH1qRkE10HcTiT4qQr_6iAqVg-CTsoIqxnoIFyv92V91WI3KqiVlOvLtfoMRg",

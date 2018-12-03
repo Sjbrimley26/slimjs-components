@@ -1,21 +1,21 @@
-const { profilePOST } = require("../api");
+const { profilePOST } = require('../api');
 
 module.exports = {
   currentUser: {},
 
-  getUser: async function() {
+  getUser: async function () {
     this.currentUser = await profilePOST();
     return this.currentUser;
   },
 
-  isLoggedIn: function() {
-    if (this.currentUser.hasOwnProperty("username")) {
+  isLoggedIn: function () {
+    if (this.currentUser.hasOwnProperty('username')) {
       return true;
     }
     return false;
   },
 
-  isAdmin: function() {
+  isAdmin: function () {
     const { currentUser } = this;
     if (this.isLoggedIn() && currentUser.isAdmin) {
       return true;

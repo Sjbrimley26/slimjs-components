@@ -1,6 +1,6 @@
 const bindDataAttributesToProps = el => {
   const attributes = Object.values(el.attributes)
-    .filter(attribute => attribute.name.includes("data-"))
+    .filter(attribute => attribute.name.includes('data-'))
     .map(({ name, nodeValue }) => {
       return {
         name: name.slice(5),
@@ -20,23 +20,23 @@ const addStyles = (el, options) => {
   });
 };
 
-function parseFunction(str) {
-  const fnBodyIndex = str.indexOf("{");
+function parseFunction (str) {
+  const fnBodyIndex = str.indexOf('{');
 
-  const fnBodu = str.substring(fnBodyIndex + 1, str.lastIndexOf("}"));
+  const fnBodu = str.substring(fnBodyIndex + 1, str.lastIndexOf('}'));
 
   const fnDeclare = str.substring(0, fnBodyIndex);
 
   const fnParams = fnDeclare.substring(
-    fnDeclare.indexOf("(") + 1,
-    fnDeclare.lastIndexOf(")")
+    fnDeclare.indexOf('(') + 1,
+    fnDeclare.lastIndexOf(')')
   );
 
-  const args = fnParams.split(",");
+  const args = fnParams.split(',');
 
   args.push(fnBodu);
 
-  function Fn() {
+  function Fn () {
     return Function.apply(this, args);
   }
   Fn.prototype = Function.prototype;
@@ -46,7 +46,7 @@ function parseFunction(str) {
 
 const setAttributes = (el, options) => {
   Object.keys(options).forEach(attr => {
-    if (attr === "textContent") {
+    if (attr === 'textContent') {
       el.textContent = options[attr];
       return;
     }
@@ -54,7 +54,7 @@ const setAttributes = (el, options) => {
   });
 };
 
-function getUrlVars() {
+function getUrlVars () {
   /* eslint-disable */
   var vars = {};
   var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(

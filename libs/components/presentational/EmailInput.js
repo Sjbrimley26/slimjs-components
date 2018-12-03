@@ -1,8 +1,8 @@
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 /* eslint-disable no-useless-escape */
 
 Slim.tag(
-  "email-input",
+  'email-input',
   `<input
       aria-label="Email Input"
       type="email"

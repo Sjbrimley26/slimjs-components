@@ -1,10 +1,10 @@
-const { Slim } = require("slim-js");
-const { addStyles } = require("../utils");
-const debounce = require("lodash/debounce");
-const { parseHTML } = require("../../utils");
+const { Slim } = require('slim-js');
+const { addStyles } = require('../utils');
+const debounce = require('lodash/debounce');
+const { parseHTML } = require('../../utils');
 
 Slim.tag(
-  "center-box",
+  'center-box',
   `<div s:id="centerBoxDiv" class="center-box">
     <span s:id="titleSpan" class="title-span"></span>
     <span s:id="bodySpan" class="body-span"></span>
@@ -56,20 +56,20 @@ Slim.tag(
   }
   </style>`,
   class CenterBox extends Slim {
-    onBeforeCreated() {
+    onBeforeCreated () {
       const resizer = debounce(() => {
         resize(this);
       }, 100);
-      window.removeEventListener("resize", resizer);
-      window.addEventListener("resize", resizer);
+      window.removeEventListener('resize', resizer);
+      window.addEventListener('resize', resizer);
     }
 
-    onRender() {
+    onRender () {
       initialize(this);
       resize(this);
     }
 
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }
@@ -77,8 +77,8 @@ Slim.tag(
 
 const initialize = element => {
   const { title, body, contents } = element.props;
-  element.titleSpan.textContent = title || "";
-  element.bodySpan.textContent = body || "";
+  element.titleSpan.textContent = title || '';
+  element.bodySpan.textContent = body || '';
 
   const contentsEl =
     contents && parseHTML(contents);
@@ -102,14 +102,14 @@ const resize = element => {
   }
 
   if (renderedSize < 320 && renderedSize >= bodyWidth) {
-    left = "5px";
+    left = '5px';
   }
 
   if (tall) {
     addStyles(element.centerBoxDiv, {
       width: `${renderedSize - 10}px`,
-      "min-height": "100%",
-      top: "0",
+      'min-height': '100%',
+      top: '0',
       left
     });
   } else {

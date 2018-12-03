@@ -1,19 +1,19 @@
-const { app, router } = require("./globals");
-const { 
-  clearPage, 
-  redirectIfNotAdmin, 
-  redirectIfNotLoggedIn 
-} = require("./utils");
-const setContent = require("./content");
+const { app, router } = require('./globals');
+const {
+  clearPage,
+  redirectIfNotAdmin,
+  redirectIfNotLoggedIn
+} = require('./utils');
+const setContent = require('./content');
 
-const { userStore, menuStore } = require("../store");
+const { userStore, menuStore } = require('../store');
 
 router.hooks({
-  before: async function(done) {
+  before: async function (done) {
     if (
-      localStorage.getItem("token") !== null &&
+      localStorage.getItem('token') !== null &&
       userStore.isLoggedIn() === false
-      ) {
+    ) {
       await userStore.getUser();
     }
     clearPage(app);
@@ -24,26 +24,26 @@ router.hooks({
 
 router
   .on({
-    login: function() {
-      setContent("Login");
+    login: function () {
+      setContent('Login');
     },
-    about: function() {
-      setContent("About");
+    about: function () {
+      setContent('About');
       redirectIfNotLoggedIn();
     },
-    signup: function() {
-      setContent("Signup");
+    signup: function () {
+      setContent('Signup');
     },
-    admin: function() {
-      setContent("Admin");
+    admin: function () {
+      setContent('Admin');
       redirectIfNotAdmin();
     },
-    confirmUsers: function() {
-      setContent("ConfirmUsers");
+    confirmUsers: function () {
+      setContent('ConfirmUsers');
       redirectIfNotAdmin();
     },
-    "*": function() {
-      setContent("Home");
+    '*': function () {
+      setContent('Home');
       redirectIfNotLoggedIn();
     }
   })

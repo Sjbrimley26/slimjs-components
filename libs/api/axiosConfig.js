@@ -1,31 +1,29 @@
-const axios = require("axios");
-const { url: base } = require("../../config");
+const axios = require('axios');
+const { url: base } = require('../../config');
 
-const ax = ( options ) => {
+const ax = (options) => {
   const { url, ...details } = options;
-  
+
   return axios({
-    "url": base + url,
+    'url': base + url,
     ...details
   });
 }; // Returns a promise that should contain the response
 
-
-const axWithToken = ( options ) => {
-  const token = localStorage.getItem("token");
+const axWithToken = (options) => {
+  const token = localStorage.getItem('token');
 
   const { headers, url, ...details } = options;
 
   return axios({
     baseURL: base + url,
-    "headers": {
+    'headers': {
       Authorization: `Bearer ${token}`,
       ...headers
     },
     ...details
   });
 };
-
 
 const onAxiosError = error => {
   if (error.response) {
@@ -34,14 +32,13 @@ const onAxiosError = error => {
     console.log(error.response.headers);
   } else if (error.request) {
     console.log(error.request);
-    localStorage.removeItem("token");
+    localStorage.removeItem('token');
     document.location.reload(false);
   } else {
     console.log('Error', error.message);
   }
   console.log(error.config);
 };
-
 
 module.exports = {
   onAxiosError,

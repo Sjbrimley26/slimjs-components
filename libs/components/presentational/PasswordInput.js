@@ -1,7 +1,7 @@
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
 Slim.tag(
-  "password-input",
+  'password-input',
   `<input
     aria-label="Password Input"
     name="password"

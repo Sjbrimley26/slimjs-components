@@ -1,29 +1,33 @@
-const createSidebar = require("../../components/main/BarAndLinks");
-const { getUnverifiedUsers } = require("../../api");
-const { addStyles } = require("../../components/utils");
+const createSidebar = require('../../components/main/BarAndLinks');
+const { getUnverifiedUsers } = require('../../api');
+const { addStyles } = require('../../components/utils');
 
 module.exports = (app, router) => () => {
   let bodyContents = ``;
   getUnverifiedUsers().then(users => {
     users.forEach(({ username, fullname }) => {
-      bodyContents += 
+      bodyContents +=
       `<li>${fullname}: ${username} <input type="checkbox"/></li>
       `;
     });
 
-    const header = document.createElement("header-bar");
-    header.setAttribute("data-title", "Activate Users");
+    const header = document.createElement('header-bar');
+    header.setAttribute('data-title', 'Activate Users');
     const sidebar = createSidebar();
-    const body = document.createElement("main-content");
+    const body = document.createElement('main-content');
     body.setAttribute(
-      "data-contents",
-      `<p style="color: white">
-        <ul>
-          <li>Name / Email Address</li>
-          ${bodyContents}
-        </ul>
-      </p>
+      'data-contents',
+      `
+      <ul>
+        <li>Name / Email Address</li>
+        ${bodyContents}
+      </ul>
       <style>
+        ul {
+          background: rgba(0,0,0,0.8);
+          height: 100%;
+        }
+
         li {
           color: white;
         }
@@ -36,17 +40,17 @@ module.exports = (app, router) => () => {
       </style>
       `
     );
-    const submitter = document.createElement("button");
-    submitter.type = "submit";
-    submitter.classList.add("submitter");
-    submitter.textContent = "Activate";
+    const submitter = document.createElement('button');
+    submitter.type = 'submit';
+    submitter.classList.add('submitter');
+    submitter.textContent = 'Activate';
     addStyles(submitter, {
-      position: "absolute",
-      height: "30px",
-      width: "80px",
-      top: "calc(80% - 20px)",
-      left: "calc(80% - 30px)",
-      "border-radius": "5px"
+      position: 'absolute',
+      height: '30px',
+      width: '80px',
+      top: 'calc(80% - 20px)',
+      left: 'calc(80% - 30px)',
+      'border-radius': '5px'
     });
     app.appendChild(submitter);
     app.appendChild(header);

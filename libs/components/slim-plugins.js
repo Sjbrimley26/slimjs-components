@@ -1,6 +1,6 @@
-const { Slim } = require("slim-js");
-const { bindDataAttributesToProps } = require("./utils");
+const { Slim } = require('slim-js');
+const { bindDataAttributesToProps } = require('./utils');
 
-Slim.plugin("create", element => {
+Slim.plugin('create', element => {
   bindDataAttributesToProps(element);
 });

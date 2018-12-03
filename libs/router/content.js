@@ -1,26 +1,26 @@
-const { app, router, head } = require("./globals");
+const { app, router, head } = require('./globals');
 
-const { 
+const {
   setHome,
   setLogin,
   setAbout,
   setSignup,
   setAdmin,
   setConfirmUsers
-} = require("./pages");
+} = require('./pages');
 
 const setDescription = page => {
   const descriptions = {
-    Home: "Rewards.Radio Home Page!",
-    Login: "Rewards.Radio Login Page!",
-    About: "Rewards.Radio About Page!",
-    Signup: "Rewards.Radio Sign-up Page!",
-    Admin: "Rewards.Radio Admin Page!"
+    Home: 'Rewards.Radio Home Page!',
+    Login: 'Rewards.Radio Login Page!',
+    About: 'Rewards.Radio About Page!',
+    Signup: 'Rewards.Radio Sign-up Page!',
+    Admin: 'Rewards.Radio Admin Page!'
   };
 
-  const currentDescription = document.querySelector("meta[name=description]");
-  const description = document.createElement("meta");
-  description.name = "description";
+  const currentDescription = document.querySelector('meta[name=description]');
+  const description = document.createElement('meta');
+  description.name = 'description';
   description.content = descriptions[page];
 
   currentDescription && head.removeChild(currentDescription);

@@ -1,8 +1,8 @@
-const { 
+const {
   newUserPOST,
   profilePOST,
   getUnverifiedUsers
- } = require("./requests");
+} = require('./requests');
 
 module.exports = {
   newUserPOST,

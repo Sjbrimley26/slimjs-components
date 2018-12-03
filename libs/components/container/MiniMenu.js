@@ -1,7 +1,7 @@
-const { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
 Slim.tag(
-  "mini-menu",
+  'mini-menu',
   `<style>
     :host {
       contain: content;
@@ -49,7 +49,7 @@ Slim.tag(
   </style>
   `,
   class MiniMenu extends Slim {
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }

@@ -1,9 +1,9 @@
-const  { Slim } = require("slim-js");
+const { Slim } = require('slim-js');
 
-require("../presentational/SignupForm");
+require('../presentational/SignupForm');
 
 Slim.tag(
-  "signup-window",
+  'signup-window',
   `<center-box
     data-title="Rewards Sign Up"
     data-contents="<signup-form></signup-form>"

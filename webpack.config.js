@@ -1,13 +1,13 @@
-const { uglifyPlugin, htmlPlugin } = require("./webpackPlugins");
-const path = require("path");
+const { uglifyPlugin, htmlPlugin } = require('./webpackPlugins');
+const path = require('path');
 
 module.exports = {
-  entry: "./src/app.js",
-  
+  entry: './src/app.js',
+
   output: {
-    path: path.resolve(__dirname, "build"),
-    filename: "bundle.js",
-    publicPath: "./"
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js',
+    publicPath: './'
   },
 
   watch: true,

@@ -1,25 +1,24 @@
-const { Slim } = require("slim-js");
-const { parseFunction } = require("../utils");
-const router = require("../../router");
-const { menuStore } = require("../../store");
+const { Slim } = require('slim-js');
+const { parseFunction } = require('../utils');
+const router = require('../../router');
+const { menuStore } = require('../../store');
 
 const addButtonAction = element => {
   const { action } = element.props;
-  
-  if (action.indexOf("{") === -1) {
-    if (action.includes("openMenu") ) {
-      const type = action.substring(action.indexOf(" ") + 1);
+
+  if (action.indexOf('{') === -1) {
+    if (action.includes('openMenu')) {
+      const type = action.substring(action.indexOf(' ') + 1);
       // append attributes to position it correctly
       const toggle = menuStore.toggleMenu.bind(menuStore, type);
-      element.iconLink.addEventListener("click", toggle);
-
+      element.iconLink.addEventListener('click', toggle);
     } else {
-      element.iconLink.addEventListener("click", () => {
+      element.iconLink.addEventListener('click', () => {
         router.navigate(action);
       });
     }
   } else {
-    element.iconLink.addEventListener("click", () => {
+    element.iconLink.addEventListener('click', () => {
       menuStore.closeMenu();
       parseFunction(action);
     });
@@ -27,7 +26,7 @@ const addButtonAction = element => {
 };
 
 Slim.tag(
-  "icon-link",
+  'icon-link',
   `<div class="iconLinkDiv">
     <button
       s:id="iconLink"
@@ -79,24 +78,24 @@ Slim.tag(
   </style>
   `,
   class IconLink extends Slim {
-    onRender() {
+    onRender () {
       const { label, icon } = this.props;
-      this.iconLink.setAttribute("name", label);
-      this.iconLink.setAttribute("aria-label", label);
+      this.iconLink.setAttribute('name', label);
+      this.iconLink.setAttribute('aria-label', label);
       /*
       const note = document.createElement("label");
       note.setAttribute("for", label);
       // TODO: Append the label nicely
       */
-      const img = document.createElement("img");
+      const img = document.createElement('img');
       img.src = icon;
-      img.className = "iconImg";
-      img.setAttribute("alt", label + " link");
+      img.className = 'iconImg';
+      img.setAttribute('alt', label + ' link');
       this.iconLink.appendChild(img);
       addButtonAction(this);
     }
 
-    get useShadow() {
+    get useShadow () {
       return true;
     }
   }
