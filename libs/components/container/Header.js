@@ -1,11 +1,28 @@
 const { Slim } = require('slim-js');
 const { setAttributes } = require('../utils');
+const { userStore } = require('../../store');
+const router = require('../../router');
 
 const initialize = el => {
   const titleSpan = document.createElement('span');
   titleSpan.textContent = el.props.title;
-  el.header.appendChild(titleSpan);
+  titleSpan.id = 'titleSpan';
 
+  const buttonSpan = document.createElement('span');
+  buttonSpan.id = 'buttonSpan';
+
+  // SETTINGS BUTTON
+  const settings = document.createElement('button');
+  settings.id = 'settingsButton';
+  settings.addEventListener('click', () => {
+    if (userStore.isAdmin) {
+      router.navigate('../admin');
+    } else {
+      router.navigate('../settings');
+    }
+  });
+
+  // LOGOUT BUTTON
   const logout = document.createElement('button');
   logout.id = 'logoutButton';
   setAttributes(logout, {
@@ -19,7 +36,11 @@ const initialize = el => {
     window.location.reload();
     // TODO: Invalidate the token on the server
   });
-  el.header.appendChild(logout);
+
+  el.header.appendChild(titleSpan);
+  buttonSpan.appendChild(settings);
+  buttonSpan.appendChild(logout);
+  el.header.appendChild(buttonSpan);
 };
 
 Slim.tag(
@@ -47,12 +68,18 @@ Slim.tag(
       padding-left: 10px;
     }
 
-    #header span {
-      width: 30%;
+    #titleSpan {
+      width: 150px;
     }
 
-    #header #logoutButton {
-      margin-left: calc(60% - 70px);
+    #buttonSpan {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-left: calc(70% - 200px);
+    }
+
+    #header #buttonSpan #logoutButton {
       padding: 8px;
       border: hidden;
       border-radius: 5px;
@@ -64,6 +91,25 @@ Slim.tag(
 
     #header #logoutButton:hover {
       filter: drop-shadow(0 0 5px lightgray);
+    }
+
+    #header #buttonSpan #settingsButton {
+      background: url(http://icons.iconarchive.com/icons/dtafalonso/android-lollipop/64/Settings-icon.png);
+      height: 64px;
+      width: 64px;
+      border: hidden;
+    }
+
+    @media (min-width: 500px) {
+      #buttonSpan {
+        margin-left: calc(80% - 200px);
+      }
+    }
+
+    @media (min-width: 920px) {
+      #buttonSpan {
+        margin-left: calc(90% - 200px);
+      }
     }
   </style>
   `,

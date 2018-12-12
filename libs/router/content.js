@@ -6,7 +6,8 @@ const {
   setAbout,
   setSignup,
   setAdmin,
-  setConfirmUsers
+  setConfirmUsers,
+  setSettings
 } = require('./pages');
 
 const setDescription = page => {
@@ -15,7 +16,8 @@ const setDescription = page => {
     Login: 'Rewards.Radio Login Page!',
     About: 'Rewards.Radio About Page!',
     Signup: 'Rewards.Radio Sign-up Page!',
-    Admin: 'Rewards.Radio Admin Page!'
+    Admin: 'Rewards.Radio Admin Page!',
+    Settings: 'iBusiness Settings Page!'
   };
 
   const currentDescription = document.querySelector('meta[name=description]');
@@ -34,7 +36,8 @@ const setContent = page => {
     About: setAbout(app, router),
     Signup: setSignup(app, router),
     Admin: setAdmin(app, router),
-    ConfirmUsers: setConfirmUsers(app, router)
+    ConfirmUsers: setConfirmUsers(app, router),
+    Settings: setSettings(app, router)
   };
   options[page]();
   setDescription(page);

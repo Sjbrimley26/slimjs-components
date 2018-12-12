@@ -42,6 +42,10 @@ router
       setContent('ConfirmUsers');
       redirectIfNotAdmin();
     },
+    settings: function () {
+      setContent('Setings');
+      redirectIfNotLoggedIn();
+    },
     '*': function () {
       setContent('Home');
       redirectIfNotLoggedIn();

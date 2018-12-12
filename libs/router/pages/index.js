@@ -4,6 +4,7 @@ const setLogin = require('./Login');
 const setSignup = require('./Signup');
 const setAdmin = require('./Admin');
 const setConfirmUsers = require('./ConfirmUsers');
+const setSettings = require('./Settings');
 
 module.exports = {
   setHome,
@@ -11,5 +12,6 @@ module.exports = {
   setLogin,
   setSignup,
   setAdmin,
-  setConfirmUsers
+  setConfirmUsers,
+  setSettings
 };
